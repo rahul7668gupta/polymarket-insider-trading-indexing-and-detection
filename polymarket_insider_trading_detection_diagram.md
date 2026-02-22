@@ -473,7 +473,7 @@ flowchart TD
     AM --> RULES
 
     classDef listener fill:#3d2800,stroke:#f0a500,color:#fff
-    classDef consumer fill:#d1ecf1,stroke:#0c5460
+    classDef consumer fill:#003340,stroke:#00bcd4,color:#fff
     classDef backfill fill:#0d2d1a,stroke:#4caf50,color:#fff
     classDef mon fill:#1e0a3d,stroke:#9c27b0,color:#fff
 
