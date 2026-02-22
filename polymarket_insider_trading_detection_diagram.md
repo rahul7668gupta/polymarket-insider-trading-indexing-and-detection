@@ -99,12 +99,12 @@ flowchart LR
     AM -->|"warning"| TOPS
     AM -->|"critical + no ack 5min"| PD
 
-    classDef chain fill:#fff3cd,stroke:#856404
-    classDef kafka fill:#d1ecf1,stroke:#0c5460
-    classDef storage fill:#d4edda,stroke:#155724
-    classDef alert fill:#f8d7da,stroke:#721c24
-    classDef mon fill:#e2d9f3,stroke:#5a189a
-    classDef ext fill:#fce4ec,stroke:#880e4f
+    classDef chain fill:#3d2800,stroke:#f0a500,color:#fff
+    classDef kafka fill:#003340,stroke:#00bcd4,color:#fff
+    classDef storage fill:#0d2d1a,stroke:#4caf50,color:#fff
+    classDef alert fill:#3d0a0e,stroke:#f44336,color:#fff
+    classDef mon fill:#1e0a3d,stroke:#9c27b0,color:#fff
+    classDef ext fill:#3d0a2e,stroke:#e91e8c,color:#fff
 
     class CTF,NRCTF chain
     class KOF,KOFB,KDR kafka
@@ -148,10 +148,10 @@ flowchart TD
     N -->|"Commit Kafka offset<br/>after both goroutines ack"| P(["Event fully processed"])
     O --> Q["Detection goroutine<br/>scores maker, then taker<br/>See Diagram 3"]
 
-    classDef polygon fill:#fff3cd,stroke:#856404
-    classDef kafka fill:#d1ecf1,stroke:#0c5460
-    classDef consumer fill:#d4edda,stroke:#155724
-    classDef decision fill:#e2d9f3,stroke:#5a189a
+    classDef polygon fill:#3d2800,stroke:#f0a500,color:#fff
+    classDef kafka fill:#003340,stroke:#00bcd4,color:#fff
+    classDef consumer fill:#0d2d1a,stroke:#4caf50,color:#fff
+    classDef decision fill:#1e0a3d,stroke:#9c27b0,color:#fff
 
     class A,B,C polygon
     class G,H,I,J,K kafka
@@ -200,10 +200,10 @@ flowchart TD
     TROUTE -->|"0.60 <= score < 0.80"| TMED["MEDIUM flag<br/>Telegram send<br/>Write to alerts table"]
     TROUTE -->|"score < 0.60"| TLOW["LOW<br/>Update wallets table<br/>not_insider = true"]
 
-    classDef step fill:#d1ecf1,stroke:#0c5460
-    classDef route fill:#e2d9f3,stroke:#5a189a
-    classDef high fill:#f8d7da,stroke:#721c24
-    classDef low fill:#d4edda,stroke:#155724
+    classDef step fill:#0a1e3d,stroke:#2196f3,color:#fff
+    classDef route fill:#1e0a3d,stroke:#9c27b0,color:#fff
+    classDef high fill:#3d0a0e,stroke:#f44336,color:#fff
+    classDef low fill:#0d2d1a,stroke:#4caf50,color:#fff
 
     class M1,M2,M3,M4,M5,T1,T2,T3,T4,T5 step
     class MHIGH,THIGH high
@@ -283,10 +283,10 @@ flowchart TD
     RCHECK -->|"Race detected"| RETRY
     RCHECK -->|"Normal"| LOW
 
-    classDef cache fill:#d1ecf1,stroke:#0c5460
-    classDef signal fill:#fff3cd,stroke:#856404
-    classDef high fill:#f8d7da,stroke:#721c24
-    classDef low fill:#d4edda,stroke:#155724
+    classDef cache fill:#0a1e3d,stroke:#2196f3,color:#fff
+    classDef signal fill:#3d2800,stroke:#f0a500,color:#fff
+    classDef high fill:#3d0a0e,stroke:#f44336,color:#fff
+    classDef low fill:#0d2d1a,stroke:#4caf50,color:#fff
 
     class S1,S1SUBG,S1SET,S2A,S2PG,S2B,S2GAMMA,S3,S3PG cache
     class SIG1,SIG2,SIG3,SIG4,SIG5,AGG signal
@@ -351,9 +351,9 @@ flowchart TD
         WALSET --> WALUSE
     end
 
-    classDef cache fill:#d1ecf1,stroke:#0c5460
-    classDef ext fill:#fce4ec,stroke:#880e4f
-    classDef db fill:#d4edda,stroke:#155724
+    classDef cache fill:#0a1e3d,stroke:#2196f3,color:#fff
+    classDef ext fill:#3d0a2e,stroke:#e91e8c,color:#fff
+    classDef db fill:#0d2d1a,stroke:#4caf50,color:#fff
 
     class DEP,TOK,MKT,WAL,DEPSET,TOKSET,MKTSET,WALSET cache
     class DEPGRAPH,TOKAPI,MKTAPI ext
@@ -406,9 +406,9 @@ flowchart TD
 
     PUBLISH --> BC_CONSUME
 
-    classDef prod fill:#d1ecf1,stroke:#0c5460
-    classDef consumer fill:#d4edda,stroke:#155724
-    classDef alert fill:#f8d7da,stroke:#721c24
+    classDef prod fill:#0a1e3d,stroke:#2196f3,color:#fff
+    classDef consumer fill:#0d2d1a,stroke:#4caf50,color:#fff
+    classDef alert fill:#3d0a0e,stroke:#f44336,color:#fff
 
     class BP_START,PREWARM,REDIS_SEED,SEM,WALLET_LOOP,BLOCK_RANGE,GETLOGS,DECODE,PUBLISH,PROGRESS prod
     class BC_CONF,BC_CONSUME,BC_INDEX,BC_DETECT consumer
@@ -472,10 +472,10 @@ flowchart TD
     GRAF --> AM
     AM --> RULES
 
-    classDef listener fill:#fff3cd,stroke:#856404
+    classDef listener fill:#3d2800,stroke:#f0a500,color:#fff
     classDef consumer fill:#d1ecf1,stroke:#0c5460
-    classDef backfill fill:#d4edda,stroke:#155724
-    classDef mon fill:#e2d9f3,stroke:#5a189a
+    classDef backfill fill:#0d2d1a,stroke:#4caf50,color:#fff
+    classDef mon fill:#1e0a3d,stroke:#9c27b0,color:#fff
 
     class L1,L2,L3 listener
     class L4,L5A,L5B,L6,L7,L8,L9,L10A,L10B,BG1 consumer
@@ -553,11 +553,11 @@ flowchart TD
     C3 -.->|"runbook links"| RB4
     C3 -.->|"runbook links"| RB5
 
-    classDef source fill:#d1ecf1,stroke:#0c5460
-    classDef warn fill:#fff3cd,stroke:#856404
-    classDef crit fill:#f8d7da,stroke:#721c24
-    classDef runbook fill:#e2d9f3,stroke:#5a189a
-    classDef ok fill:#d4edda,stroke:#155724
+    classDef source fill:#003340,stroke:#00bcd4,color:#fff
+    classDef warn fill:#3d2800,stroke:#f0a500,color:#fff
+    classDef crit fill:#3d0a0e,stroke:#f44336,color:#fff
+    classDef runbook fill:#1e0a3d,stroke:#9c27b0,color:#fff
+    classDef ok fill:#0d2d1a,stroke:#4caf50,color:#fff
 
     class GRAFANA_ALERTS,APP_ALERTS source
     class W1,INH1,INH2 warn
