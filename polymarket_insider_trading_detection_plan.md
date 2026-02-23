@@ -41,7 +41,7 @@ An event-driven system that monitors Polymarket's on-chain `OrderFilled` events 
 
 ### 1. Event Listener
 
-Subscribes to the Polygon WebSocket and captures `OrderFilled` events from both CTF Exchange contracts. Applies a **10-block confirmation depth** — only processes logs from blocks at least 10 behind the chain tip, eliminating all reorg handling. On each confirmed block, fetches logs, decodes events, and publishes to Kafka. Tracks the last confirmed block in Postgres so restarts resume without gaps.
+Subscribes to the Polygon WebSocket and captures `OrderFilled` events from both CTF Exchange contracts. Applies a **10-block confirmation depth** — only processes logs from blocks at least 10 behind the chain tip, eliminating all reorg handling. On each confirmed block, calls `eth_getLogs` with a `topics[0]` filter set to the keccak256 hash of the `OrderFilled` event signature — the RPC node returns only `OrderFilled` logs, not all contract events. This eliminates decoding overhead and reduces response payload size. Decodes events and publishes to Kafka. Tracks the last confirmed block in Postgres so restarts resume without gaps.
 
 The 10-block depth adds ~20 seconds of latency, which is acceptable since insider markets resolve over hours or days.
 

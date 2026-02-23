@@ -124,7 +124,7 @@ Traces a single `OrderFilled` event from Polygon block arrival through Kafka to 
 flowchart TD
     A(["New block header<br/>arrives on WebSocket"]) --> B["Listener checks:<br/>block_number == latest - 10?"]
     B -->|"No — too recent"| A
-    B -->|"Yes — confirmed block"| C["eth_getLogs for confirmed block<br/>CTF Exchange + Neg Risk CTF Exchange"]
+    B -->|"Yes — confirmed block"| C["eth_getLogs for confirmed block<br/>CTF Exchange + Neg Risk CTF Exchange<br/>topics[0]=keccak256(OrderFilled signature)<br/>(RPC returns OrderFilled logs only)"]
 
     C --> D{"Events found?"}
     D -->|"None"| E["Update indexer_state.last_confirmed_block<br/>increment blocks_received_total"]
@@ -381,7 +381,7 @@ flowchart TD
 
         WALLET_LOOP --> BLOCK_RANGE["Block range strategy:<br/>Start: contract deploy block ~32,600,000<br/>End: latest - 10<br/>Chunk size: 100,000 blocks ~55h"]
 
-        BLOCK_RANGE --> GETLOGS["eth_getLogs per chunk:<br/>CTF Exchange + Neg Risk CTF Exchange<br/>topics[2]=maker_addr UNION topics[3]=taker_addr"]
+        BLOCK_RANGE --> GETLOGS["eth_getLogs per chunk:<br/>CTF Exchange + Neg Risk CTF Exchange<br/>topics[0]=keccak256(OrderFilled signature)<br/>topics[2]=maker_addr UNION topics[3]=taker_addr"]
 
         GETLOGS --> DECODE["Decode each log → OrderFilled struct<br/>(same ABI decoder as live listener)"]
         DECODE --> PUBLISH["Publish to Kafka:<br/>topic: order-filled-backfill<br/>same JSON schema as order-filled"]
